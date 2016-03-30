@@ -90,6 +90,8 @@ function getNoun(e) {
         return d;
     }
 }
+// Generates random numbers to get random a adjective and noun.
+// Creates a new pizza name with them.
 function generator(e, a) {
     var r = getAdj(e), n = getNoun(a), i = parseInt(Math.random() * r.length), t = parseInt(Math.random() * n.length), o = "The " + r[i].capitalize() + " " + n[t].capitalize();
     return o;
@@ -111,6 +113,7 @@ String.prototype.capitalize = function() {
 var adjectives = [ "dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific" ], nouns = [ "animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi" ], selectRandomMeat = function() {
     var e = pizzaIngredients.meats[Math.floor(Math.random() * pizzaIngredients.meats.length)];
     return e;
+    //SelectRandom functions select and return a random ingredient for the pizzas
 }, selectRandomNonMeat = function() {
     var e = pizzaIngredients.nonMeats[Math.floor(Math.random() * pizzaIngredients.nonMeats.length)];
     return e;
@@ -142,15 +145,18 @@ function updatePositions() {
         logAverageFrame(n);
     }
 }
+//Returns random ingredients inside of a <li> tag
 var ingredientItemizer = function(e) {
     return "<li>" + e + "</li>";
 }
+
 var makeRandomPizza = function() {
     for (var e = "", a = Math.floor(4 * Math.random()), r = Math.floor(3 * Math.random()), n = Math.floor(2 * Math.random()), i = 0; a > i; i++) e += ingredientItemizer(selectRandomMeat());
     for (var t = 0; r > t; t++) e += ingredientItemizer(selectRandomNonMeat());
     for (var o = 0; n > o; o++) e += ingredientItemizer(selectRandomCheese());
     return e += ingredientItemizer(selectRandomSauce()), e += ingredientItemizer(selectRandomCrust());
 }
+// Returns a DOM element for each pizza
 var pizzaElementGenerator = function(e) {
     var a, r, n, i, t, o;
     return a = document.createElement("div"), r = document.createElement("div"), n = document.createElement("img"),
@@ -160,7 +166,9 @@ var pizzaElementGenerator = function(e) {
     t = document.createElement("h4"), t.innerHTML = randomName(), i.appendChild(t),o = document.createElement("ul"), o.innerHTML = makeRandomPizza(), i.appendChild(o),
     a.appendChild(i), a;
 }
+
 var resizePizzas = function(e) {
+    //Changes the name that appear above the pizza size slider
     function a(e) {
         var pizzaSizeSelector = document.querySelector("#pizzaSize")
         switch (e) {
@@ -176,6 +184,7 @@ var resizePizzas = function(e) {
     }
     window.performance.mark("mark_start_resize");
     a(e);
+    // Sets the size of the pizza image in percentage depending of the slider position
     function n(e) {
       switch (e) {
         case "1":
@@ -195,7 +204,7 @@ var resizePizzas = function(e) {
       }
       randomPizzas = document.querySelectorAll(".randomPizzaContainer");
         for (var a = 0; a < randomPizzas.length; a++) {
-            randomPizzas[a].style.width = nw + "%";
+            randomPizzas[a].style.width = nw + "%"; //resize the pizza
         }
     }
     n(e);
@@ -216,7 +225,7 @@ window.performance.mark("mark_end_generating"), window.performance.measure("meas
 
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
 
-console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms"); //TODO: move this to a webworker
+console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
 
 var frame = 0;
 
