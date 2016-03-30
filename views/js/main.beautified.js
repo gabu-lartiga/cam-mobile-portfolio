@@ -1,3 +1,4 @@
+
 function getAdj(e) {
     switch (e) {
       case "dark":
@@ -89,35 +90,14 @@ function getNoun(e) {
         return d;
     }
 }
-
 function generator(e, a) {
     var r = getAdj(e), n = getNoun(a), i = parseInt(Math.random() * r.length), t = parseInt(Math.random() * n.length), o = "The " + r[i].capitalize() + " " + n[t].capitalize();
     return o;
 }
-
 function randomName() {
     var e = parseInt(Math.random() * adjectives.length), a = parseInt(Math.random() * nouns.length);
     return generator(adjectives[e], nouns[a]);
 }
-
-function logAverageFrame(e) {
-    for (var a = e.length, r = 0, n = a - 1; n > a - 11; n--) r += e[n].duration;
-    console.log("Average time to generate last 10 frames: " + r / 10 + "ms");
-}
-
-function updatePositions() {
-    frame++, window.performance.mark("mark_start_frame");
-    for (var e = document.querySelectorAll(".mover"), a = 0; a < e.length; a++) {
-        var r = Math.sin(document.body.scrollTop / 1250 + a % 5);
-        e[a].style.left = e[a].basicLeft + 100 * r + "px";
-    }
-    if (window.performance.mark("mark_end_frame"), window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame"),
-    frame % 10 === 0) {
-        var n = window.performance.getEntriesByName("measure_frame_duration");
-        logAverageFrame(n);
-    }
-}
-
 var pizzaIngredients = {};
 
 pizzaIngredients.meats = [ "Pepperoni", "Sausage", "Fennel Sausage", "Spicy Sausage", "Chicken", "BBQ Chicken", "Chorizo", "Chicken Andouille", "Salami", "Tofu", "Bacon", "Canadian Bacon", "Proscuitto", "Italian Sausage", "Ground Beef", "Anchovies", "Turkey", "Ham", "Venison", "Lamb", "Duck", "Soylent Green", "Carne Asada", "Soppressata Picante", "Coppa", "Pancetta", "Bresola", "Lox", "Guanciale", "Chili", "Beef Jerky", "Pastrami", "Kielbasa", "Scallops", "Filet Mignon" ],
@@ -128,7 +108,6 @@ pizzaIngredients.crusts = [ "White Crust", "Whole Wheat Crust", "Flatbread Crust
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
 var adjectives = [ "dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific" ], nouns = [ "animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi" ], selectRandomMeat = function() {
     var e = pizzaIngredients.meats[Math.floor(Math.random() * pizzaIngredients.meats.length)];
     return e;
@@ -144,23 +123,44 @@ var adjectives = [ "dark", "color", "whimsical", "shiny", "noise", "apocalyptic"
 }, selectRandomCrust = function() {
     var e = pizzaIngredients.crusts[Math.floor(Math.random() * pizzaIngredients.crusts.length)];
     return e;
-}, ingredientItemizer = function(e) {
+};
+function logAverageFrame(e) {
+    for (var a = e.length, r = 0, n = a - 1; n > a - 11; n--) r += e[n].duration;
+    console.log("Average time to generate last 10 frames: " + r / 10 + "ms");
+}
+function updatePositions() {
+    frame++, window.performance.mark("mark_start_frame");
+    var e = document.querySelectorAll(".mover");
+    var scrollT = document.body.scrollTop;
+    for (var a = 0; a < e.length; a++) {
+        var r = Math.sin(scrollT / 1250 + a % 5);
+        e[a].style.left = e[a].basicLeft + 100 * r + "px";
+    }
+    if (window.performance.mark("mark_end_frame"), window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame"),
+    frame % 10 === 0) {
+        var n = window.performance.getEntriesByName("measure_frame_duration");
+        logAverageFrame(n);
+    }
+}
+var ingredientItemizer = function(e) {
     return "<li>" + e + "</li>";
-}, makeRandomPizza = function() {
+}
+var makeRandomPizza = function() {
     for (var e = "", a = Math.floor(4 * Math.random()), r = Math.floor(3 * Math.random()), n = Math.floor(2 * Math.random()), i = 0; a > i; i++) e += ingredientItemizer(selectRandomMeat());
     for (var t = 0; r > t; t++) e += ingredientItemizer(selectRandomNonMeat());
     for (var o = 0; n > o; o++) e += ingredientItemizer(selectRandomCheese());
     return e += ingredientItemizer(selectRandomSauce()), e += ingredientItemizer(selectRandomCrust());
-}, pizzaElementGenerator = function(e) {
+}
+var pizzaElementGenerator = function(e) {
     var a, r, n, i, t, o;
     return a = document.createElement("div"), r = document.createElement("div"), n = document.createElement("img"),
     i = document.createElement("div"), a.classList.add("randomPizzaContainer"), a.style.width = "33.33%",
     a.style.height = "325px", a.id = "pizza" + e, r.classList.add("col-md-6"), n.src = "images/pizza.png",
     n.classList.add("img-responsive"), r.appendChild(n), a.appendChild(r), i.classList.add("col-md-6"),
-    t = document.createElement("h4"), t.innerHTML = randomName(), i.appendChild(t),
-    o = document.createElement("ul"), o.innerHTML = makeRandomPizza(), i.appendChild(o),
+    t = document.createElement("h4"), t.innerHTML = randomName(), i.appendChild(t),o = document.createElement("ul"), o.innerHTML = makeRandomPizza(), i.appendChild(o),
     a.appendChild(i), a;
-}, resizePizzas = function(e) {
+}
+var resizePizzas = function(e) {
     function a(e) {
         var pizzaSizeSelector = document.querySelector("#pizzaSize")
         switch (e) {
@@ -202,7 +202,7 @@ var adjectives = [ "dark", "color", "whimsical", "shiny", "noise", "apocalyptic"
     window.performance.mark("mark_end_resize"),
     window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
     var i = window.performance.getEntriesByName("measure_pizza_resize");
-    console.log("Time to resize pizzas: " + i[i.length - 1].duration + "ms");
+    console.log("Time to resize pizzas: " + i[i.length - 1].duration + "ms"); //TODO: add to the worker
 };
 
 window.performance.mark("mark_start_generating");
@@ -216,7 +216,7 @@ window.performance.mark("mark_end_generating"), window.performance.measure("meas
 
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
 
-console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
+console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms"); //TODO: move this to a webworker
 
 var frame = 0;
 
