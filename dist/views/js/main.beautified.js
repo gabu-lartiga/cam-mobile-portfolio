@@ -1,4 +1,3 @@
-
 function getAdj(e) {
     switch (e) {
       case "dark":
@@ -137,7 +136,7 @@ function updatePositions() {
     var scrollT = document.body.scrollTop;
     for (var a = 0; a < e.length; a++) {
         var r = Math.sin(scrollT / 1250 + a % 5);
-        e[a].style.left = e[a].basicLeft + 100 * r + "px";
+        e[a].style.left = e[a].basicLeft + 100 * r + "px";//TODO: use transform instead
     }
     if (window.performance.mark("mark_end_frame"), window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame"),
     frame % 10 === 0) {
@@ -202,9 +201,10 @@ var resizePizzas = function(e) {
         default:
           console.log("bug in sizeSwitcher");
       }
-      randomPizzas = document.querySelectorAll(".randomPizzaContainer");
-        for (var a = 0; a < randomPizzas.length; a++) {
-            randomPizzas[a].style.width = nw + "%"; //resize the pizza
+      randomPizzas = document.getElementByClassName("randomPizzaContainer");
+      len = randomPizzas.length;
+        for (var i = 0; i < len; i++) {
+            randomPizzas[i].style.width = nw + "%"; //resize the pizza
         }
     }
     n(e);
@@ -215,9 +215,8 @@ var resizePizzas = function(e) {
 };
 
 window.performance.mark("mark_start_generating");
-
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; 100 > i; i++) {
-    var pizzasDiv = document.getElementById("randomPizzas");
     pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
