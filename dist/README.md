@@ -22,6 +22,16 @@ The online version is a `git submodule` of a different repository but the struct
 
 - [gabu-lartiga/gabu-lartiga.github.io](https://github.com/gabu-lartiga/gabu-lartiga.github.io) > `cam-mobile-portfolio @ 47ed2db`
 
+## Tools
+Through the project you can find content that has `.min.` or `.beautified.` before the extension file.
+- `.min.` means the code is obfuscated
+- `.beautified.` means the code is indented
+
+To do this I used:
+- [Sublime Text 2](https://www.sublimetext.com/) as a text and code editor.
+- [Package Control](https://packagecontrol.io/) to install necessary tools.
+- [Minify](https://packagecontrol.io/packages/Minify) to minify and beautify the code.
+
 ## Mesure Optimization
 
 - To meassure the portfolio optimization go to [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) and paste the site you want to measure
