@@ -9,13 +9,13 @@ In this project I applied technics to measure the performance and optimize a giv
 #### Online version
 Check the obfuscated and indented online versions
 - Open your browser and check the following links
-    - Obfuscated: [http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/](http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/)
+    - Obfuscated: [http://gabu-lartiga.github.io/cam-mobile-portfolio/dest/](http://gabu-lartiga.github.io/cam-mobile-portfolio/dest/)
     - Indented: [http://gabu-lartiga.github.io/cam-mobile-portfolio/src/](http://gabu-lartiga.github.io/cam-mobile-portfolio/src/)
 
 #### GitHub version
 Check the code of the obfuscated and indented versions in the following repository:
 - [gabu-lartiga/cam-mobile-portfolio](https://github.com/gabu-lartiga/cam-mobile-portfolio), this repository contains 2 folders
-    - `dist` contains the obfuscated code
+    - `dest` contains the obfuscated code
     - `src` contains the indented code
 
 The online version is a `git submodule` of a different repository but the structure is the same.
