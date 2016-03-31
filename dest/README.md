@@ -7,16 +7,16 @@ In this project I applied technics to measure the performance and optimize a giv
 ### Getting started
 
 #### Online version
-Check the optimized and non-optimized online versions
+Check the obfuscated and indented online versions
 - Open your browser and check the following links
-    - Optimized: [http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/](http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/)
-    - Non-Optimized: [http://gabu-lartiga.github.io/cam-mobile-portfolio/src/](http://gabu-lartiga.github.io/cam-mobile-portfolio/src/)
+    - Obfuscated: [http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/](http://gabu-lartiga.github.io/cam-mobile-portfolio/dist/)
+    - Indented: [http://gabu-lartiga.github.io/cam-mobile-portfolio/src/](http://gabu-lartiga.github.io/cam-mobile-portfolio/src/)
 
 #### GitHub version
-Check the code of the optimized and non-optimized versions in the following repository:
+Check the code of the obfuscated and indented versions in the following repository:
 - [gabu-lartiga/cam-mobile-portfolio](https://github.com/gabu-lartiga/cam-mobile-portfolio), this repository contains 2 folders
-    - `dist` contains the optimized code
-    - `src` contains the non-optimized code
+    - `dist` contains the obfuscated code
+    - `src` contains the indented code
 
 The online version is a `git submodule` of a different repository but the structure is the same.
 
